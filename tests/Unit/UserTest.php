@@ -21,4 +21,10 @@ class UserTest extends TestCase
         $profile->user()->associate($user);
         $this->assertTrue($profile->save());
     }
+
+    public function testQuestionSave()
+    {
+        $user = factory(\App\User::class)->make();
+        $this->assertTrue(is_object($user->questions()->get()));
+    }
 }
