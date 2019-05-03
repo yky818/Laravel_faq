@@ -1,0 +1,16 @@
+.fa-thumbs-up{
+    font-size: 23px;
+}
+.fa-thumbs-up.active{
+    color: #3490dc;
+}
+
+div.vote{
+	display: inline;
+}
+.vote-form select{
+	margin-left: 10px;
+}
+.card-header h6{
+	display: inline;
+}

@@ -26,6 +26,9 @@ Route::get('/user/{user_id}/profile/{profile_id}/edit', 'ProfileController@edit'
 Route::post('/user/{user_id}/profile/', 'ProfileController@store')->name('profile.store');
 Route::patch('/user/{user_id}/profile/{profile_id}', 'ProfileController@update')->name('profile.update');
 
+Route::get('/user/questions/', 'QuestionController@userQuestions')->name('user.questions');
+Route::post('/questions/vote', 'QuestionController@addRemoveVote')->name('question.vote');
+
 
 Route::resources([
     'questions' => 'QuestionController',

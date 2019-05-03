@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use \App\Question;
 class HomeController extends Controller
 {
     /**
@@ -21,10 +22,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = Auth::user();
-        $questions = $user->questions()->paginate(6);
-        return view('home')->with('questions', $questions);
+        $sort = ($request->sortby)?$request->sortby:'';
+        $allquestions = Question::withCount('votes');
+        
+        if($sort == 'newest'){
+           $questions = $allquestions->orderBy('created_at', 'desc')->limit(12)->get();
+        }else{
+           $questions =  $allquestions->orderBy('votes_count', 'desc')->limit(12)->get();
+
+        }
+        return view('home')->with(['questions'=> $questions,'sort'=>$sort]);
     }
 }

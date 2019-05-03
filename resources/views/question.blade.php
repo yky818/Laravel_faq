@@ -35,6 +35,9 @@
                     <div class="card-body">
                         @forelse($question->answers as $answer)
                             <div class="card">
+                                <div class="card-header">
+                                    <h6>{{ $answer->user->profile->fname }} {{ $answer->user->profile->lname}}</h6>
+                                </div>
                                 <div class="card-body">{{$answer->body}}</div>
                                 <div class="card-footer">
 
